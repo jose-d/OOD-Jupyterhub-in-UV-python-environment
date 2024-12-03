@@ -1,0 +1,72 @@
+---
+cluster: "phoebev1"
+
+attributes:
+
+  extra_jupyter_args: ""
+
+  slurm_partition:
+        label: Slurm partition
+        options:
+                -       - gpu_koios
+                        - gpu_koios
+                -       - cpu_int Phoebe
+                        - cpu_int
+
+        value: gpu_koios
+        widget: select
+
+  preloaded_modules:
+          label: Toolchain generation
+          widget: select
+          options:
+                  - [ "nope","nope"]
+
+  project_path:
+          label: Select your project directory
+          widget: "path_selector"
+          data-target-file-type: dirs  # Valid values are: files, dirs, or both
+          readonly: false
+          show_files: false
+          directory: "<%= CurrentUser.home %>"
+          show_hidden: false
+          favorites:
+                  - "<%= CurrentUser.home %>"
+
+  python:
+          label: Python version
+          widget: select
+          options:
+                  - [ "Default / keep the last one used", "" ]
+                  - [ "Python 3.9", "3.9" ]
+                  - [ "Python 3.10", "3.10" ]
+                  - [ "Python 3.11", "3.11" ]
+                  - [ "Python 3.12", "3.12" ]
+
+  num_hours:
+          label: Session duration
+          widget: select
+          options:
+                  - [ "8h", "8"]
+                  - [ "24h", "24"]
+                  - [ "1week", "168"]
+                  - [ "14 days", "336" ]
+          value: "24"
+
+
+
+  slot_cnt:
+    label: Instance size
+    help: select instance size
+    widget: select
+    options:
+      - [ "8 cores / 1gpu", "1" ]
+
+form:
+        - slurm_partition
+        - python
+#  - preloaded_modules
+        - extra_jupyter_args
+        - num_hours
+        - slot_cnt
+        - project_path

@@ -1,0 +1,20 @@
+---
+batch_connect:
+  template: "basic"
+
+script:
+        native:
+                - "-N 1"
+                - "--partition=<%= slurm_partition %>"
+                - "--cpus-per-task"
+                - "<%= slot_cnt.to_i * 8 %>"
+                - "--mem=<%= slot_cnt.to_i * 32000 %>"
+                - "--time=<%= num_hours.to_i * 60 %>"
+                - "--qos=normal"
+                <% if slurm_partition == "gpu_int" %>
+                - "--gres=gpu:a100:<%= slot_cnt %>"
+                <% end %>
+                <% if slurm_partition == "gpu_koios" %>
+                - "--gres=gpu:p100:<%= slot_cnt %>"
+                <% end %>
+
