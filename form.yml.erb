@@ -53,14 +53,16 @@ attributes:
                   - [ "14 days", "336" ]
           value: "24"
 
-
-
   slot_cnt:
     label: Instance size
     help: select instance size
     widget: select
     options:
-      - [ "8 cores / 1gpu", "1" ]
+            - [ "8 cores / 1gpu", "1" ]
+            - [ "16 cores / 2gpu", "2" ]
+            - [ "32 cores / 4gpu", "4" ]
+            - [ "64 cores / 8gpu", "8" ]
+            - [ "128 cores", "16" ]
 
 form:
         - slurm_partition
