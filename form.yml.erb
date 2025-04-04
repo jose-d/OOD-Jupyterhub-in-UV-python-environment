@@ -8,6 +8,8 @@ attributes:
   slurm_partition:
         label: Slurm partition
         options:
+                -       - gpu_int Phoebe
+                        - gpu_int
                 -       - gpu_koios
                         - gpu_koios
                 -       - cpu_int Phoebe
@@ -49,6 +51,7 @@ attributes:
           options:
                   - [ "8h", "8"]
                   - [ "24h", "24"]
+                  - [ "48h", "48" ]
                   - [ "1week", "168"]
                   - [ "14 days", "336" ]
           value: "24"
@@ -61,6 +64,7 @@ attributes:
             - [ "8 cores / 1gpu", "1" ]
             - [ "16 cores / 2gpu", "2" ]
             - [ "32 cores / 4gpu", "4" ]
+            - [ "48 cores / 6gpu", "6" ]
             - [ "64 cores / 8gpu", "8" ]
             - [ "128 cores", "16" ]
 
