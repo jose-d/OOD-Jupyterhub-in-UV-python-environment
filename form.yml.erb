@@ -21,8 +21,10 @@ attributes:
   preloaded_modules:
           label: Toolchain generation
           widget: select
+          value: ""
           options:
-                  - [ "nope","nope"]
+                  - [ "None",""]
+                  - [ "foss/2024a","foss/2024a"]
 
   project_path:
           label: Select your project directory
@@ -34,6 +36,18 @@ attributes:
           show_hidden: false
           favorites:
                   - "<%= CurrentUser.home %>"
+
+  memory:
+          label: Custom memory
+          widget: select
+          value: ""
+          options:
+                  - [ "keep_default", "" ]
+                  - [ "500G", "500000" ]
+                  - [ "750G", "750000" ]
+                  - [ "1000G", "1000000" ]
+                  - [ "1500G", "1500000" ]
+                  - [ "2000G", "2000000" ]
 
   python:
           label: Python version
@@ -71,8 +85,9 @@ attributes:
 form:
         - slurm_partition
         - python
-#  - preloaded_modules
+        - preloaded_modules
         - extra_jupyter_args
         - num_hours
         - slot_cnt
         - project_path
+        - memory

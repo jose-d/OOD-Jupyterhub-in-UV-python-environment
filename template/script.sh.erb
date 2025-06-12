@@ -5,6 +5,7 @@ minimum_python="3.9"
 default_python="3.11"
 python_version="<%= context.python %>"
 project_path="<%= context.project_path %>"
+modules="<%= context.preloaded_modules %>"
 
 echo "dumping ulimit -a info:"
 ulimit -a
@@ -24,6 +25,13 @@ kernel_name=$(date +"%Y-%m-%d_%H-%M-%S")
 # make sure we have UV
 echo "Attempting to self-update uv, alternatively install it:"
 uv self update || curl -LsSf https://astral.sh/uv/install.sh | sh
+
+if [ -z "$modules"]; then
+	echo "Note: no modules to be loaded, passing.."
+else
+	module load "${modules}"
+fi
+
 
 # create uv project, if there is none yet in current directory
 if [ -f pyproject.toml  ]; then

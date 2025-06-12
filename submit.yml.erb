@@ -8,7 +8,7 @@ script:
                 - "--partition=<%= slurm_partition %>"
                 - "--cpus-per-task"
                 - "<%= slot_cnt.to_i * 8 %>"
-                - "--mem=<%= slot_cnt.to_i * 32000 %>"
+                - "--mem=<%= memory.to_s.strip.empty? ? slot_cnt.to_i * 32000 : memory.to_i %>"
                 - "--time=<%= num_hours.to_i * 60 %>"
                 - "--qos=normal"
                 <% if slurm_partition == "gpu_int" %>
